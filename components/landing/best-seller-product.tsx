@@ -1,17 +1,36 @@
+"use client"
+
 import axios from "axios"
 import { IProducts } from "@/lib/types/products.type"
 import { BASE_API_URL } from "@/lib/base-api-url"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
+import { useEffect, useState } from "react"
 
-const BestSellerProduct = async () => {
-  const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`, {
-    params: {
-      limit: 4
+const BestSellerProduct = () => {
+  const [productsData, setProductsData] = useState<IProducts[]>([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`, {
+        params: {
+          limit: 4
+        }
+      })
+      const productsData = res.data
+
+      setProductsData(productsData)
     }
-  })
 
-  const productsData = res.data
+    fetchData()
+  }, [])
+  // const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`, {
+  //   params: {
+  //     limit: 4
+  //   }
+  // })
+
+  // const productsData = res.data
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
