@@ -15,7 +15,7 @@ const FavoritProduct = () => {
     async function fetchData() {
       const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`)
       const filterFavorit = res.data.filter((product) => product.rating.rate >= 4.5)
-      const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate)
+      const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate) ?? []
 
       setProductsData(sortedFavorit)
     }

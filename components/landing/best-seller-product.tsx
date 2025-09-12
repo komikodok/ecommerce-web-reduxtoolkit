@@ -17,9 +17,9 @@ const BestSellerProduct = () => {
           limit: 4
         }
       })
-      const productsData = res.data
+      const data = res.data ?? []
 
-      setProductsData(productsData)
+      setProductsData(data)
     }
 
     fetchData()
