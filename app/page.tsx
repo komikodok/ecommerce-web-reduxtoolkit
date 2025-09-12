@@ -1,13 +1,8 @@
-"use client"
-
 import Navbar from "@/components/common/navbar"
 import LandingContent from "@/components/landing/landing-content"
 import LandingHero from "@/components/landing/landing-hero"
-import { useRef } from "react"
 
 const HomePage = () => {
-  const childRef = useRef<HTMLDivElement>(null)
-
   return (
     <>
       <div 
@@ -17,11 +12,11 @@ const HomePage = () => {
           backgroundPosition: "top",
         }}
         >
-        <Navbar onScroll={() => {childRef.current?.scrollIntoView({behavior: "smooth"})}}/>
+        <Navbar />
         <LandingHero />
       </div>
         
-      <LandingContent ref={childRef}/>
+      <LandingContent />
     </>
   )
 }

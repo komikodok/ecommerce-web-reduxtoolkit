@@ -1,15 +1,27 @@
-const BestSellerProduct = () => {
+import axios from "axios"
+import { IProducts } from "@/lib/types/products.type"
+import { BASE_API_URL } from "@/lib/base-api-url"
+import ProductCardLarge from "@/components/common/product-card-large"
+import ProductCardRegular from "../common/product-card-regular"
+
+const BestSellerProduct = async () => {
+  const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`, {
+    params: {
+      limit: 4
+    }
+  })
+
+  const productsData = res.data
+
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
       <h2 className="text-4xl text-center font-semibold tracking-[-0.1em]">Best Seller</h2>
       <ul className="w-full md:max-w-2xl mx-auto grid grid-cols-2 space-y-5 place-items-center">
-        { Array.from({ length: 4 }).map((_, index) => {
+        { productsData.map((product, index) => {
           return index <= 0 ? (
-            <li key={index} className="w-52 h-72 md:w-72 md:h-90 row-span-3 border border-stone-300 rounded-md p-2">
-              <div className="w-full h-42 md:h-58 rounded-md border"></div>
-            </li>
+            <ProductCardLarge key={index} product={product}/>
           ) : (
-            <li key={index} className="w-52 h-28 md:w-72 md:h-32 border"></li>
+            <ProductCardRegular key={index} product={product}/>
           )
         })}
       </ul>

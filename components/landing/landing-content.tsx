@@ -1,15 +1,12 @@
 import { Separator } from "@/components/ui/separator"
 import BestSellerProduct from "./best-seller-product"
+import FavoritProduct from "./favorit-product"
 
 
-type LandingContentProps = {
-  ref: React.RefObject<HTMLDivElement | null>
-}
-
-const LandingContent = ({ref}: LandingContentProps) => {
+const LandingContent = () => {
   return (
-    <div className='w-full my-10 space-y-20'>
-      <div ref={ref} className='flex gap-7 w-full max-w-lg md:max-w-5xl justify-center items-center mx-auto'>
+    <div className='w-full my-10 space-y-30'>
+      <div id="why" className='flex gap-7 w-full max-w-lg md:max-w-5xl justify-center items-center mx-auto'>
         <h2 className="text-2xl md:text-4xl tracking-[-0.1em] text-black flex gap-3">
             <span className="font-bold text-black tracking-[-0.1em]">Why </span>
             &phi;Shop
@@ -28,6 +25,8 @@ const LandingContent = ({ref}: LandingContentProps) => {
       </div>
 
       <BestSellerProduct />
+
+      <FavoritProduct />
     </div>
   )
 }
