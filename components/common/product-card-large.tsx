@@ -18,7 +18,7 @@ const ProductCardLarge = ({ product }: ProductCardProps) => {
   return (
     <li
       ref={cardRef}
-      className="relative flex flex-col w-52 h-76 md:w-72 md:h-92 row-span-3 border border-stone-300 rounded-md p-1"
+      className="relative flex flex-col max-md:scale-75 w-52 h-76 md:w-72 md:h-92 row-span-3 border border-stone-300 rounded-md p-1"
     >
       <div className="relative flex-shrink-0 w-full h-42 md:h-48 rounded-md">
         <Image

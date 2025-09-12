@@ -19,11 +19,11 @@ const LandingHero = () => {
           Shop Smart <br /> <span className="text-3 text-amber-500">Quality Guaranteed</span>
         </h2>
         <div className='flex gap-5 my-3'>
-          <Button className='bg-yellow-600 hover:bg-amber-600 font-bold w-[30vh]'>
+          <Button className='bg-yellow-600 hover:bg-amber-600 font-bold w-[20vh] md:w-[30vh]'>
             Shop Now
             <ArrowRight />
           </Button>
-          <Button className='border border-stone-500 hover:bg-slate-700/60 text-stone-300 font-semibold w-[30vh]'>Purchase</Button>
+          <Button className='border border-stone-500 hover:bg-slate-700/60 text-stone-300 font-semibold w-[20vh] md:w-[30vh]'>Purchase</Button>
         </div>
       </div>
 

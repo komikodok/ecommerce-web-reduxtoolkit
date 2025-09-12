@@ -18,7 +18,7 @@ const ProductCardRegular = ({ product }: ProductCardProps) => {
     return (
         <li 
             ref={cardRef}
-            className="w-52 h-28 md:w-72 md:h-32 border border-stone-300 rounded-md p-1"
+            className="max-md:scale-75 w-52 h-28 md:w-72 md:h-32 border border-stone-300 rounded-md p-1"
         >
             <div className="relative flex">
                 <div className="relative flex-shrink-0 w-15 h-15 md:w-16 md:h-16">
