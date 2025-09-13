@@ -28,7 +28,7 @@ export function productShowcaseAnimate() {
         .to('.showcase', {
             transform: (i) => {
                 const width = window.innerWidth
-                const translate = width >= 768 ? 160 : 110
+                const translate = width >= 768 ? 160 : 80
                 
                 return `rotate(${angle * i}deg) translate(${translate}px) rotate(90deg)`
             }
@@ -45,7 +45,7 @@ export function productShowcaseAnimate() {
             scale: window.innerWidth >= 768 ? 1.5 : 2,
             transform: (i) => {
                 const rotateX = angle * i
-                const translateZ = window.innerWidth >= 768 ? 260 : 170
+                const translateZ = window.innerWidth >= 768 ? 260 : 140
                 return `rotateX(${rotateX}deg) rotate(89deg) translateZ(${translateZ}px)`
             }
         })

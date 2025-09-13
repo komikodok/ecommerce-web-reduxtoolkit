@@ -12,7 +12,7 @@ const LandingHero = () => {
     landingHeroAnimate()
   }, [])
   return (
-    <div className='w-full md:max-w-6xl h-[80vh] mx-auto flex max-md:flex-col items-center'>
+    <div className='w-full md:max-w-6xl h-[90vh] mx-auto flex max-md:flex-col items-center'>
       <div className='space-y-3 p-6 flex-shrink-0 flex flex-col justify-center'>
         <p className='text-1 text-amber-400/80 italic text-lg'>Special Deals</p>
         <h2 className='text-2 text-4xl md:text-5xl text-white font-bold leading-snug'>

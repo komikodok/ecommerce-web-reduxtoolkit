@@ -18,7 +18,7 @@ const ProductShowcase = () => {
                     <li
                         key={index}
                         className={`
-                            showcase absolute w-20 h-20 md:w-32 md:h-32 rounded-md
+                            showcase absolute w-16 h-16 md:w-32 md:h-32 rounded-md
                             ${product.bg}
                         `}
                     >

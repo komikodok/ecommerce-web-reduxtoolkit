@@ -36,18 +36,13 @@ const Navbar = () => {
         fetchData()
     }, [])
     
-    function handleScroll() {
-        const why = document.getElementById("why")
-        why?.scrollIntoView({ behavior: "smooth" })
-    }
-
     return (
         <div className="w-full">
             <div className="w-full md:max-w-6xl flex gap-4 mx-auto">
                 <Link href="/" className="cursor-pointer ml-4 flex justify-center items-center">
                     <Image 
-                        width={60}
-                        height={60}
+                        width={40}
+                        height={40}
                         src="/logo.png"
                         alt="logo"
                     />
@@ -61,9 +56,11 @@ const Navbar = () => {
                 <NavigationMenu className="hidden md:flex ml-20">
                     <NavigationMenuList className="space-x-3">
                         <NavigationMenuItem>
-                                <div onClick={handleScroll} className="cursor-pointer font-medium text-sm text-stone-400 hover:text-amber-600">
-                                    Why &phi;Shop
-                                </div>
+                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                    <Link href="#why" className="text-stone-400 hover:text-amber-600">
+                                        Why &phi;Shop
+                                    </Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
 
                         <NavigationMenuItem>

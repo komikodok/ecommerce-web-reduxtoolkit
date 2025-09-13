@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <div 
-        className="w-full h-[90vh] bg-cover bg-center bg-no-repeat"
+        className="w-full h-screen bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.90), rgba(0,0,0,0.90)), url(/bg-hero.jpeg)`,
           backgroundPosition: "top",

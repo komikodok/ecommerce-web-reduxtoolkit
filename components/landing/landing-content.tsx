@@ -5,7 +5,7 @@ import FavoritProduct from "./favorit-product"
 
 const LandingContent = () => {
   return (
-    <div className='w-full my-10 space-y-30'>
+    <div className='w-full my-10 overflow-hidden space-y-30'>
       <div id="why" className='flex gap-7 w-full max-w-lg md:max-w-5xl justify-center items-center mx-auto'>
         <h2 className="text-2xl md:text-4xl tracking-[-0.1em] text-black flex gap-3">
             <span className="font-bold text-black tracking-[-0.1em]">Why </span>
