@@ -1,73 +1,119 @@
 "use client"
 
-import { AlignJustify } from "lucide-react"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+} from "@/components/ui/accordion"
+
 import { 
     ShoppingCart, 
     Heart, 
     X, 
     CircleQuestionMark, 
     HandCoins ,
-    ChartBarBig
+    ChartBarBig,
+    AlignJustify,
 } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Button } from "../ui/button"
+import Link from "next/link"
+import axios from "axios"
+import { BASE_API_URL } from "@/lib/base-api-url"
 
 
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [categories, setCategories] = useState<string[]>([])
 
+    useEffect(() => {
+        async function fetchData() {
+            const res = await axios.get(`${BASE_API_URL}/products/categories`)
+            const categoriesData = res.data ?? []
+
+            setCategories(categoriesData)
+        }
+
+        fetchData()
+    }, [])
+    
     return (
         <>
-            <div 
-                className="ml-auto mr-3 cursor-pointer md:hidden flex justify-center items-center"
+            <Button 
+                className="ml-auto my-2 mr-3 cursor-pointer md:hidden flex justify-center items-center"
                 onClick={() => setIsOpen(true)}
             >
-                <AlignJustify className="stroke-white size-8" />
-            </div>
+                <AlignJustify className="stroke-white size-5" />
+            </Button>
 
             <div 
                 className={`
-                    fixed w-screen h-screen z-50 flex transition-all duration-300
+                    overlay
+                    fixed inset-0 bg-black/60 z-40
+                    ${isOpen ? "block" : "hidden"}
+                `}
+                onClick={() => setIsOpen(false)} 
+            />
+            
+            <div 
+                className={`
+                    fixed md:hidden w-60 h-screen bg-white z-50 transition-all duration-300
                     ${isOpen ? "translate-x-0" : "-translate-x-full"}
                 `}
             >
-                <div className="w-60 h-full bg-slate-100 p-2">
-                    <div className="relative w-full space-y-2 p-3">
-                        <h2 className="flex gap-2 font-semibold active:bg-stone-200 rounded-md p-1 items-center">
-                            <ShoppingCart />
-                            Card
-                        </h2>
-                        <h2 className="flex gap-2 font-semibold active:bg-stone-200 rounded-md p-1 items-center">
-                            <Heart />
+                <header className="relative shadow-sm h-20 flex flex-col justify-end">
+                    <Button onClick={() => setIsOpen(false)} className="absolute top-0 right-0">
+                        <X className="size-5" strokeWidth={2}/>
+                    </Button>
+                    <div className="flex justify-center items-center space-x-6">
+                        <p className="flex gap-2 items-center text-sm rounded-md p-2">
+                            <Heart className="size-4"/>
                             Wishlist
-                        </h2>
-                        <div 
-                            className="absolute top-0 right-0"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <X />
+                        </p>
+                        <p className="flex gap-2 items-center text-sm rounded-md p-2">
+                            <ShoppingCart className="size-4"/>
+                            Cart
+                        </p>
+                    </div>
+                </header>
+
+                <main className="p-3 bg-stone-50 w-full h-full overflow-y-scroll">
+                    <div className="space-y-2">
+                        <h2 className="text-sm text-stone-400">@menu</h2>
+                        <div className="space-y-3">
+                            <Link href="#why" className="flex gap-2 px-3 py-2 items-center text-sm">
+                                <CircleQuestionMark className="size-4"/>
+                                Why &phi;Shop
+                            </Link>
+
+                            <Accordion type="single" collapsible>
+                                <AccordionItem value="item-1">
+                                    <AccordionTrigger className="flex items-center">
+                                        <ChartBarBig className="size-4"/>
+                                        Categories
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                        <ul className="px-6 overflow-y-scroll max-h-28">
+                                            {categories.map((category) => (
+                                                <li key={category} className="py-1">
+                                                    <Link href="/" className="text-sm">
+                                                        {category}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
+                            <Link href="/" className="flex gap-2 px-3 py-2 items-center text-sm">
+                                <HandCoins className="size-4"/>
+                                Purchase
+                            </Link>
                         </div>
                     </div>
-
-                    <Separator className="w-full h-2 bg-black/60"></Separator>
-
-                    <div className="w-full h-full space-y-2 p-3">
-                        <h2 className="font-semibold flex gap-2 p-2 active:bg-stone-200 rounded-md items-center text-lg">
-                            <CircleQuestionMark strokeWidth={2}/>
-                            Why &phi;Shop
-                        </h2>
-
-                        <h2 className="font-semibold flex gap-2 text-lg active:bg-stone-200 rounded-md p-2">
-                            <ChartBarBig strokeWidth={2}/>
-                            Category
-                        </h2>
-
-                        <h2 className="font-semibold flex gap-2 text-lg active:bg-stone-200 rounded-md p-2">
-                            <HandCoins strokeWidth={2}/>
-                            Purchase
-                        </h2>
-                    </div>
-                </div>
+                </main>
             </div>
         </>
     )
