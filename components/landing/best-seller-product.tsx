@@ -1,17 +1,27 @@
-import axios from "axios"
+// import axios from "axios"
 import { IProducts } from "@/lib/types/products.type"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
-import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
+// import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
+import { BASE_URL } from "@/lib/base-url"
 
 const BestSellerProduct = async () => {
-  const res = await axios.get<IProducts[]>(`${BASE_FAKESTORE_API_URL}/products`, {
-    params: {
-      limit: 4
+  // const res = await axios.get<IProducts[]>(`${BASE_FAKESTORE_API_URL}/products`, {
+  //   params: {
+  //     limit: 4
+  //   }
+  // })
+
+  // const productsData = res.data
+  
+  const res = await fetch(`${BASE_URL}/api/products?limit=4`, {
+    method: "GET",
+    next: {
+      revalidate: 60
     }
   })
 
-  const productsData = res.data
+  const productsData: IProducts[] = await res.json() ?? []
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
