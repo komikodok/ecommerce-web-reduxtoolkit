@@ -1,11 +1,11 @@
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url";
 import { IProducts } from "@/lib/types/products.type";
 import axios from "axios";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { logger } from "@/lib/logger";
 
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     try {
         const limit = searchParams.get("limit") || undefined
