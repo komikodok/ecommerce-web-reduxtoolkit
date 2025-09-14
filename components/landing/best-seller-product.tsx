@@ -12,11 +12,14 @@ const BestSellerProduct = async () => {
   // })
 
   // const productsData = res.data
+  console.log("TEST BEST SELLER PRODUCT")
   const res = await fetch(`${BASE_URL}/api/products?limit=4`, {
     method: "GET"
   })
 
   const productsData: IProducts[] = await res.json()
+
+  console.log(productsData)
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">

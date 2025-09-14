@@ -16,6 +16,9 @@ const FavoritProduct = async () => {
   const filterFavorit = productsData.filter((product) => product.rating.rate >= 4.5)
   const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate)
 
+  console.log(sortedFavorit)
+
+
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
       <h2 className="text-4xl text-center font-semibold tracking-[-0.1em]">Favorit</h2>
