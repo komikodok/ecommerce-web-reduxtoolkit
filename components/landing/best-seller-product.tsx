@@ -1,36 +1,34 @@
-"use client"
-
 import axios from "axios"
 import { IProducts } from "@/lib/types/products.type"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
 
-const BestSellerProduct = () => {
-  const [productsData, setProductsData] = useState<IProducts[]>([]) 
+const BestSellerProduct = async () => {
+  // const [productsData, setProductsData] = useState<IProducts[]>([]) 
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await axios.get<IProducts[]>(`${BASE_FAKESTORE_API_URL}/products`, {
-        params: {
-          limit: 4
-        }
-      })
-      const productsData = res.data
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await axios.get<IProducts[]>(`${BASE_FAKESTORE_API_URL}/products`, {
+  //       params: {
+  //         limit: 4
+  //       }
+  //     })
+  //     const productsData = res.data
 
-      setProductsData(productsData)
-    }
-
-    fetchData()
-  }, [])
-  // const res = await axios.get<IProducts[]>(`${BASE_URL}/api/products`, {
-  //   params: {
-  //     limit: 4
+  //     setProductsData(productsData)
   //   }
-  // })
 
-  // const productsData = res.data
+  //   fetchData()
+  // }, [])
+  const res = await axios.get<IProducts[]>(`${BASE_FAKESTORE_API_URL}/products`, {
+    params: {
+      limit: 4
+    }
+  })
+
+  const productsData = res.data
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
