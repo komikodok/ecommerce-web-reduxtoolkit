@@ -2,6 +2,7 @@ import { BASE_API_URL } from "@/lib/base-url";
 import { IProducts } from "@/lib/types/products.type";
 import axios from "axios";
 import { NextResponse } from "next/server";
+import { logger } from "@/lib/logger";
 
 
 export async function GET(req: Request) {
@@ -18,11 +19,14 @@ export async function GET(req: Request) {
         })
 
         if (res.status !== 200) {
+            logger.error("Failed fetch data", res.data)
+
             return NextResponse.json({ error: "Failed fetch data" }, { status: res.status })
         }
         
         return NextResponse.json(res.data)
     } catch (err) {
+        logger.error("Internal server error", err)
         return NextResponse.json({ error: err }, { status: 500 })
     }
 }
