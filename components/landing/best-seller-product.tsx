@@ -1,3 +1,5 @@
+"use client"
+
 import axios from "axios"
 import { IProducts } from "@/lib/types/products.type"
 import ProductCardLarge from "@/components/common/product-card-large"
@@ -21,7 +23,7 @@ const BestSellerProduct = () => {
     }
 
     fetchData()
-  })
+  }, [])
   // const res = await axios.get<IProducts[]>(`${BASE_URL}/api/products`, {
   //   params: {
   //     limit: 4
