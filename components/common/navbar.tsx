@@ -16,7 +16,7 @@ import Image from "next/image"
 import { ShoppingCart, Heart } from "lucide-react"
 import { Lobster } from "next/font/google"
 import { useEffect, useState } from "react"
-import { BASE_API_URL } from "@/lib/base-url"
+import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import axios from "axios"
 import Sidebar from "./sidebar"
 
@@ -27,7 +27,7 @@ const Navbar = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get(`${BASE_API_URL}/products/categories`)
+            const res = await axios.get(`${BASE_FAKESTORE_API_URL}/products/categories`)
             const categoriesData = res.data ?? []
 
             setCategories(categoriesData)

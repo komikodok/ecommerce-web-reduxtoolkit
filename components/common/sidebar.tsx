@@ -20,7 +20,7 @@ import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import axios from "axios"
-import { BASE_API_URL } from "@/lib/base-url"
+import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 
 
 const Sidebar = () => {
@@ -29,7 +29,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get(`${BASE_API_URL}/products/categories`)
+            const res = await axios.get(`${BASE_FAKESTORE_API_URL}/products/categories`)
             const categoriesData = res.data ?? []
 
             setCategories(categoriesData)
