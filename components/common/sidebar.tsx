@@ -20,7 +20,7 @@ import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import axios from "axios"
-import { BASE_API_URL } from "@/lib/base-api-url"
+import { BASE_API_URL } from "@/lib/base-url"
 
 
 const Sidebar = () => {
@@ -94,9 +94,9 @@ const Sidebar = () => {
                                         Categories
                                     </AccordionTrigger>
                                     <AccordionContent>
-                                        <ul className="px-6 overflow-y-scroll max-h-28">
-                                            {categories.map((category) => (
-                                                <li key={category} className="py-1">
+                                        <ul className="overflow-y-scroll space-y-2 max-h-28">
+                                            {categories.map((category, index) => (
+                                                <li key={index} className="px-3">
                                                     <Link href="/" className="text-sm">
                                                         {category}
                                                     </Link>

@@ -16,7 +16,7 @@ import Image from "next/image"
 import { ShoppingCart, Heart } from "lucide-react"
 import { Lobster } from "next/font/google"
 import { useEffect, useState } from "react"
-import { BASE_API_URL } from "@/lib/base-api-url"
+import { BASE_API_URL } from "@/lib/base-url"
 import axios from "axios"
 import Sidebar from "./sidebar"
 

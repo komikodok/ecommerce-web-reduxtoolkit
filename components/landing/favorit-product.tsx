@@ -1,12 +1,12 @@
 import axios from "axios"
 import { IProducts } from "@/lib/types/products.type"
-import { BASE_API_URL } from "@/lib/base-api-url"
+import { BASE_URL } from "@/lib/base-url"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
 
 
 const FavoritProduct = async () => {
-  const res = await axios.get<IProducts[]>(`${BASE_API_URL}/products`)
+  const res = await axios.get<IProducts[]>(`${BASE_URL}/api/products`)
 
   const filterFavorit = res.data.filter((product) => product.rating.rate >= 4.5)
   const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate)
