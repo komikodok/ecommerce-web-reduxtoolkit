@@ -93,9 +93,9 @@ const Navbar = () => {
                     </NavigationMenuList>
                 </NavigationMenu>
 
-                <div className="hidden md:flex ml-auto mr-10 gap-5 justify-center items-center">
+                <div className="hidden md:flex my-2 ml-auto mr-10 gap-5 justify-center items-center">
                     <div className="relative">
-                        <Heart className="size-8" fill="#d97706" />
+                        <Heart className="size-8" strokeWidth={0} fill="#d97706" />
                         <div className="absolute -top-1 -right-1 rounded-full p-2 w-3 h-3 flex justify-center items-center bg-red-500">
                             <p className=" text-xs text-white font-bold">+1</p>
                         </div>
