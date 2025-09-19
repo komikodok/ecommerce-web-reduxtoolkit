@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import ProductShowcase from './product-showcase'
 import { ArrowRight } from 'lucide-react'
 import { landingHeroAnimate } from '@/lib/animation/landing-hero.animate'
+import Link from 'next/link'
 
 const LandingHero = () => {
 
@@ -23,7 +24,11 @@ const LandingHero = () => {
             Shop Now
             <ArrowRight />
           </Button>
-          <Button className='border border-stone-500 hover:bg-slate-700/60 text-stone-300 font-semibold w-[20vh] md:w-[30vh]'>Purchase</Button>
+          <Button 
+            className='border border-stone-500 hover:bg-slate-700/60 active:bg-slate-700/60 text-stone-300 font-semibold w-[20vh] md:w-[30vh]'
+          >
+            <Link href="/purchase">Purchase</Link>
+          </Button>
         </div>
       </div>
 

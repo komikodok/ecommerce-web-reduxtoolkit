@@ -44,7 +44,7 @@ const Sidebar = () => {
                 className="ml-auto my-2 mr-3 cursor-pointer md:hidden flex justify-center items-center"
                 onClick={() => setIsOpen(true)}
             >
-                <AlignJustify className="stroke-white size-5" />
+                <AlignJustify className="stroke-amber-600 size-5" />
             </Button>
 
             <div 
@@ -107,7 +107,7 @@ const Sidebar = () => {
                                 </AccordionItem>
                             </Accordion>
 
-                            <Link href="/" className="flex gap-2 px-3 py-2 items-center text-sm">
+                            <Link href="/purchase" className="flex gap-2 px-3 py-2 items-center text-sm">
                                 <HandCoins className="size-4"/>
                                 Purchase
                             </Link>

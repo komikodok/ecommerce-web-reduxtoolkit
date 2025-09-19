@@ -2,7 +2,7 @@ import Navbar from "@/components/common/navbar"
 import LandingContent from "@/components/landing/landing-content"
 import LandingHero from "@/components/landing/landing-hero"
 
-const HomePage = () => {
+const LandingPage = () => {
   return (
     <>
       <div 
@@ -21,4 +21,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default LandingPage

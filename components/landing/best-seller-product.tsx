@@ -24,7 +24,7 @@ const BestSellerProduct = () => {
     }
 
     fetchData()
-  })
+  }, [])
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
       <h2 className="text-4xl text-center font-semibold tracking-[-0.1em]">Best Seller</h2>
