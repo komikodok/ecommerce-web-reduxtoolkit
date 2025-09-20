@@ -2,6 +2,11 @@ import Navbar from "@/components/common/navbar"
 import LandingContent from "@/components/landing/landing-content"
 import LandingHero from "@/components/landing/landing-hero"
 
+export const metadata = {
+  title: "Home",
+  description: "Home Page"
+}
+
 const LandingPage = () => {
   return (
     <>
