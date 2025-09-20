@@ -12,8 +12,8 @@ type Params = {
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return {
-        title: params.category,
-        description: params.category
+        title: decodeURIComponent(params.category),
+        description: decodeURIComponent(params.category)
     }
 }
 
