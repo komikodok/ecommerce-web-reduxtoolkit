@@ -19,14 +19,14 @@ const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentP
 
         productsData = await responseWithCategory.json() ?? []
     } else {
-        const response = await fetch(`${BASE_FAKESTORE_API_URL}/products?${queryParams.toString()}`, {
+        const productsresponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?${queryParams.toString()}`, {
             method: 'GET',
             next: {
                 revalidate: 60
             }
         })
 
-        productsData = await response.json() ?? []
+        productsData = await productsresponse.json() ?? []
     }
 
     const categoriesProductResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/categories`, {

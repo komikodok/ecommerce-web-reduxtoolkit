@@ -20,16 +20,17 @@ const ProductCardLarge = ({ product }: ProductCardProps) => {
       ref={cardRef}
       className="relative flex flex-col w-44 h-66 md:w-72 md:h-94 row-span-3 border border-stone-300 rounded-md p-1"
     >
-      <div className="relative flex-shrink-0 w-full h-30 md:h-48 rounded-md">
+      <div className="relative flex-shrink-0 mx-auto w-28 h-28 md:w-48 md:h-48 rounded-md">
         <Image
           alt="product"
           src={product.image}
           fill
           className="object-contain"
-          sizes="(max-width: 768px) 160px, (max-width: 1200px) 120px, 120px"
+          sizes="(max-width: 768px) 112px, (max-width: 1200px) 192px, 220px"
         />
-        <WishlistButton />
       </div>
+    
+      <WishlistButton />
 
       <div className="flex flex-col px-2 py-1 md:p-3">
         <h3 className="font-medium md:text-xs text-stone-600">{product.category}</h3>
