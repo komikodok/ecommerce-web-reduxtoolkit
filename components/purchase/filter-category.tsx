@@ -21,7 +21,6 @@ const FilterCategory = ({ categories }: FilterCategoryProps) => {
     const [isDescending, setIsDescending] = useState<boolean>(searchParams.get("sort") ? true : false)
 
     useEffect(() => {
-        console.log(queryParams.toString())
         let url = "/purchase"
 
         if (currentCategory) {
