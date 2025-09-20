@@ -20,16 +20,17 @@ const ProductCardMedium = ({ product }: ProductCardProps) => {
       ref={cardRef}
       className="relative flex flex-col w-40 p-2 md:p-3 md:w-60 border border-stone-300 rounded-md"
     >
-      <div className="relative flex-shrink-0 w-full h-20 md:h-30 rounded-md">
+      <div className="relative flex-shrink-0 mx-auto w-20 h-20 md:h-30 rounded-md">
         <Image
           alt="product"
           src={product.image}
           fill
           className="object-contain"
-          sizes="(max-width: 768px) 160px, (max-width: 1200px) 120px, 120px"
+          sizes="(max-width: 768px) 80px, (max-width: 1200px) 120px, 160px"
         />
-        <WishlistButton />
       </div>
+      
+      <WishlistButton />
 
       <div className="flex flex-col px-2 mt-2">
           <h3 className="font-medium text-[10px] md:text-xs text-stone-600">{product.category}</h3>
