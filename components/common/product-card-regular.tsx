@@ -1,12 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { Star, Plus } from "lucide-react"
+import { Star } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import WishlistButton from "./wishlist-button"
 import { ProductCardProps } from "@/lib/types/products.type"
 import { useEffect, useRef } from "react"
 import { ProductCardRegularAnimate } from "@/lib/animation/product-card-regular.animate"
+import ProductItemModal from "./product-item-modal"
 
 const ProductCardRegular = ({ product }: ProductCardProps) => {
   const cardRef = useRef<HTMLLIElement | null>(null)
@@ -48,13 +49,7 @@ const ProductCardRegular = ({ product }: ProductCardProps) => {
                 <WishlistButton></WishlistButton>
             </div>
 
-            <div className="relative group cursor-pointer flex justify-center items-center mx-auto my-2 w-30 md:w-48 h-5 md:h-8 border border-stone-400 rounded-full">
-                <div className="overlay absolute z-0 left-0 w-0 h-full group-hover:w-full group-active:w-full bg-blue-900 rounded-full transition-all duration-300"></div>
-                <div className="absolute right-0 w-6 md:w-8 h-6 md:h-8 flex justify-center items-center rounded-full ring-3 ring-white bg-blue-900">
-                    <Plus className="w-5 h-5 text-white"/>
-                </div>
-                <h2 className="text-blue-950 group-hover:text-white group-active:text-white text-[9px] md:text-sm font-bold z-20 transition-all duration-300">${product.price}</h2>
-            </div>
+            <ProductItemModal product={product}></ProductItemModal>
         </li>
     )
 }

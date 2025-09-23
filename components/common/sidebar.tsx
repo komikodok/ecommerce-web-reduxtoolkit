@@ -41,7 +41,7 @@ const Sidebar = () => {
     return (
         <>
             <Button 
-                className="ml-auto my-2 mr-3 cursor-pointer md:hidden flex justify-center items-center"
+                className="ml-auto my-2 mr-3 shadow-none cursor-pointer md:hidden flex justify-center items-center"
                 onClick={() => setIsOpen(true)}
             >
                 <AlignJustify className="stroke-amber-600 size-5" />

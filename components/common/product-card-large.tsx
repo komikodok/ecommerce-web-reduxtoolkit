@@ -2,11 +2,12 @@
 
 import Image from "next/image"
 import { ProductCardProps } from "@/lib/types/products.type"
-import { Plus, Star } from "lucide-react"
+import { Star } from "lucide-react"
 import { Separator } from "../ui/separator"
 import WishlistButton from "./wishlist-button"
 import { useEffect, useRef } from "react"
 import { productCardLargeAnimate } from "@/lib/animation/product-card-large.animate"
+import ProductItemModal from "./product-item-modal"
 
 const ProductCardLarge = ({ product }: ProductCardProps) => {
   const cardRef = useRef<HTMLLIElement | null>(null)
@@ -46,18 +47,7 @@ const ProductCardLarge = ({ product }: ProductCardProps) => {
         <p className="text-xs font-medium text-black/70">{product.rating.count} review</p>
       </div>
 
-      <div
-        className="relative mt-2 group cursor-pointer flex justify-center items-center mx-auto w-36 md:w-56 h-6 md:h-8 border border-stone-400 rounded-full"
-        onClick={() => {}}
-      >
-        <div className="overlay absolute z-0 left-0 w-0 h-full group-hover:w-full group-active:w-full bg-blue-900 rounded-full transition-all md:duration-300"></div>
-        <div className="absolute right-0 w-8 h-8 flex justify-center items-center rounded-full ring-3 ring-white bg-blue-900">
-          <Plus className="w-5 h-5 text-white" />
-        </div>
-        <h2 className="text-blue-950 group-hover:text-white group-active:text-white text-xs sm:text-sm font-bold z-20 transition-all md:duration-300">
-          ${product.price}
-        </h2>
-      </div>
+      <ProductItemModal product={product}></ProductItemModal>
     </li>
   )
 }

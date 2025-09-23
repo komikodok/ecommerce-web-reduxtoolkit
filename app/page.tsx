@@ -1,4 +1,5 @@
 import Navbar from "@/components/common/navbar"
+// import ProductItemModal from "@/components/common/product-item-modal"
 import LandingContent from "@/components/landing/landing-content"
 import LandingHero from "@/components/landing/landing-hero"
 
@@ -22,6 +23,7 @@ const LandingPage = () => {
       </div>
         
       <LandingContent />
+      {/* <ProductItemModal productId={1}></ProductItemModal> */}
     </>
   )
 }

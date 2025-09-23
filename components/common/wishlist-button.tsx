@@ -2,14 +2,14 @@
 
 import { Heart } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
-import { wishlistAnimate } from "@/lib/animation/whistlist-button.animate"
+import { wishlistButtonAnimate } from "@/lib/animation/whistlist.animate"
 
 const WishlistButton = () => {
     const [isWishlist, setIsWishlist] = useState<boolean>(false)
     const wishlistRef = useRef<SVGSVGElement | null>(null)
 
     useEffect(() => {
-        wishlistAnimate(isWishlist, wishlistRef)
+        wishlistButtonAnimate(isWishlist, wishlistRef)
     }, [isWishlist])
     return (
         <div 
