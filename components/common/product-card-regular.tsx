@@ -7,6 +7,7 @@ import WishlistButton from "./wishlist-button"
 import { ProductCardProps } from "@/lib/types/products.type"
 import { useEffect, useRef } from "react"
 import { ProductCardRegularAnimate } from "@/lib/animation/product-card-regular.animate"
+import ProductItemDrawer from "./product-item-drawer"
 import ProductItemModal from "./product-item-modal"
 
 const ProductCardRegular = ({ product }: ProductCardProps) => {
@@ -49,6 +50,7 @@ const ProductCardRegular = ({ product }: ProductCardProps) => {
                 <WishlistButton></WishlistButton>
             </div>
 
+            <ProductItemDrawer product={product}></ProductItemDrawer>
             <ProductItemModal product={product}></ProductItemModal>
         </li>
     )

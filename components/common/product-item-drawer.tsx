@@ -1,22 +1,21 @@
 "use client"
 
 import {
-    Dialog,
-    DialogTrigger,
-    DialogContent,
-    DialogFooter,
-    DialogTitle,
-    DialogHeader,
-    DialogDescription
-} from "@/components/ui/dialog"
+    Drawer,
+    DrawerTrigger,
+    DrawerContent,
+    DrawerFooter,
+    DrawerTitle,
+    DrawerHeader,
+    DrawerDescription
+} from "@/components/ui/drawer"
 import { Plus, Minus, ShoppingCart } from "lucide-react"
 import { IProducts } from "@/lib/types/products.type"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { useEffect, useState } from "react"
 
-const ProductItemModal = ({ product }: { product: IProducts }) => {
+const ProductItemDrawer = ({ product }: { product: IProducts }) => {
     const [totalItem, setTotalItem] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<number>(0)
 
@@ -28,9 +27,9 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
     }, [totalItem, product.price])
 
     return (
-        <div className="hidden md:block">
-            <Dialog>
-                <DialogTrigger asChild>
+        <div className="md:hidden">
+            <Drawer>
+                <DrawerTrigger asChild>
                     <div className="relative mt-2 group cursor-pointer flex justify-center items-center mx-auto w-[90%] h-6 md:h-8 border border-stone-400 rounded-full">
                         <div className="overlay absolute z-0 left-0 w-0 h-full group-hover:w-full group-active:w-full bg-blue-900 rounded-full transition-all md:duration-300"></div>
                         <h2 className="text-blue-950 group-hover:text-white group-active:text-white text-xs sm:text-sm font-bold z-20 transition-all md:duration-300">
@@ -40,15 +39,15 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                             <Plus className="w-5 h-5 text-white" />
                         </div>
                     </div>
-                </DialogTrigger>
+                </DrawerTrigger>
 
-                <DialogContent className="space-y-4 bg-slate-50 overflow-hidden border-none">
-                    <DialogTitle className="mx-auto sm:text-lg text-center">
+                <DrawerContent className="!rounded-none space-y-4 bg-slate-50 overflow-hidden border-none">
+                    <DrawerTitle className="mx-auto sm:text-lg text-center">
                         {product.title}
-                    </DialogTitle>
+                    </DrawerTitle>
 
-                    <DialogHeader>
-                        <div className="relative w-40 h-40 mx-auto">
+                    <DrawerHeader>
+                        <div className="relative w-40 md:w-60 h-40 md:h-60 mx-auto">
                             <Image 
                                 alt="product"
                                 src={product.image}
@@ -57,13 +56,11 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                                 className="object-contain"
                             />
                         </div>
-                    </DialogHeader>
+                    </DrawerHeader>
                     
-                    <ScrollArea>
-                        <DialogDescription className="px-2 max-h-20 text-stone-500 text-center">
-                            {product.description}
-                        </DialogDescription>
-                    </ScrollArea>
+                    <DrawerDescription className="px-2 max-h-20 overflow-y-scroll text-stone-500 text-center">
+                        {product.description}
+                    </DrawerDescription>
 
                     <p className="font-bold text-blue-950 px-2 text-center">Price: ${totalPrice}</p>
 
@@ -83,7 +80,7 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                         </Button>
                     </div>
 
-                    <DialogFooter className="p-0">
+                    <DrawerFooter className="p-0">
                         <div className="flex w-full">
                             <Button className="w-1/2 flex gap-1 bg-[tomato] text-white rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
@@ -91,11 +88,11 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                             </Button>
                             <Button className="w-1/2 bg-blue-900 text-white rounded-none">Checkout</Button>
                         </div>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
         </div>
     )
 }
 
-export default ProductItemModal
+export default ProductItemDrawer

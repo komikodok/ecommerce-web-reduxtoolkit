@@ -23,7 +23,6 @@ const LandingPage = () => {
       </div>
         
       <LandingContent />
-      {/* <ProductItemModal productId={1}></ProductItemModal> */}
     </>
   )
 }

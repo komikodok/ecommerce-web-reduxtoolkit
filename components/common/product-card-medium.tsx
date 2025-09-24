@@ -7,6 +7,7 @@ import { Separator } from "../ui/separator"
 import WishlistButton from "./wishlist-button"
 import { useEffect, useRef } from "react"
 import { productCardLargeAnimate } from "@/lib/animation/product-card-large.animate"
+import ProductItemDrawer from "./product-item-drawer"
 import ProductItemModal from "./product-item-modal"
 
 const ProductCardMedium = ({ product }: ProductCardProps) => {
@@ -47,6 +48,7 @@ const ProductCardMedium = ({ product }: ProductCardProps) => {
         <p className="text-[10px] md:text-xs font-medium text-black/70">{product.rating.count} review</p>
       </div>
 
+      <ProductItemDrawer product={product}></ProductItemDrawer>
       <ProductItemModal product={product}></ProductItemModal>
     </li>
   )
