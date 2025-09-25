@@ -14,18 +14,32 @@ import { IProducts } from "@/lib/types/products.type"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { addToCart } from "@/lib/slices/cart-slice"
+import { useDispatch } from "react-redux"
 
 const ProductItemDrawer = ({ product }: { product: IProducts }) => {
     const [totalItem, setTotalItem] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<number>(0)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const priceNow = Number((product.price * totalItem).toFixed(2))
         setTotalPrice(Math.max(priceNow, product.price))
 
         setTotalItem(Math.max(totalItem, 1))
+
     }, [totalItem, product.price])
 
+    function handleAddToCart() {
+        dispatch(addToCart({
+            productId: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: totalItem 
+        }))
+    }
     return (
         <div className="md:hidden">
             <Drawer>
@@ -82,7 +96,7 @@ const ProductItemDrawer = ({ product }: { product: IProducts }) => {
 
                     <DrawerFooter className="p-0">
                         <div className="flex w-full">
-                            <Button className="w-1/2 flex gap-1 bg-[tomato] text-white rounded-none">
+                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] text-white rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
                                 <ShoppingCart className="stroke-white size-6" strokeWidth={2}></ShoppingCart>
                             </Button>

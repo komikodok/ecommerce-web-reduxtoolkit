@@ -21,6 +21,7 @@ import { Button } from "../ui/button"
 import Link from "next/link"
 import axios from "axios"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
+import ToastAddCart from "./toast-add-cart"
 
 
 const Sidebar = () => {
@@ -41,9 +42,11 @@ const Sidebar = () => {
     return (
         <>
             <Button 
-                className="ml-auto my-2 mr-3 shadow-none cursor-pointer md:hidden flex justify-center items-center"
+                className="relative ml-auto my-2 mr-3 shadow-none cursor-pointer md:hidden flex justify-center items-center"
                 onClick={() => setIsOpen(true)}
             >
+                <ToastAddCart></ToastAddCart>
+                
                 <AlignJustify className="stroke-amber-600 size-5" />
             </Button>
 
@@ -97,7 +100,7 @@ const Sidebar = () => {
                                         <ul className="overflow-y-scroll space-y-2 max-h-28">
                                             {categories.map((category, index) => (
                                                 <li key={index} className="px-3">
-                                                    <Link href="/" className="text-sm">
+                                                    <Link href={`/purchase/${category}`} className="text-sm">
                                                         {category}
                                                     </Link>
                                                 </li>

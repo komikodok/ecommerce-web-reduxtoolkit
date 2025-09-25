@@ -15,17 +15,32 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { addToCart } from "@/lib/slices/cart-slice"
 
 const ProductItemModal = ({ product }: { product: IProducts }) => {
     const [totalItem, setTotalItem] = useState<number>(1)
     const [totalPrice, setTotalPrice] = useState<number>(0)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const priceNow = Number((product.price * totalItem).toFixed(2))
         setTotalPrice(Math.max(priceNow, product.price))
 
         setTotalItem(Math.max(totalItem, 1))
+
     }, [totalItem, product.price])
+
+    function handleAddToCart() {
+        dispatch(addToCart({
+            productId: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: totalItem 
+        }))
+    }
 
     return (
         <div className="hidden md:block">
@@ -42,18 +57,18 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                     </div>
                 </DialogTrigger>
 
-                <DialogContent className="space-y-4 bg-slate-50 overflow-hidden border-none">
-                    <DialogTitle className="mx-auto sm:text-lg text-center">
+                <DialogContent className="bg-slate-50 max-w-xs overflow-hidden border-none p-0">
+                    <DialogTitle className="mx-auto text-lg text-center p-6">
                         {product.title}
                     </DialogTitle>
 
                     <DialogHeader>
-                        <div className="relative w-40 h-40 mx-auto">
+                        <div className="relative w-50 h-50 mx-auto">
                             <Image 
                                 alt="product"
                                 src={product.image}
                                 fill
-                                sizes="160px"
+                                sizes="200px"
                                 className="object-contain"
                             />
                         </div>
@@ -67,16 +82,16 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
 
                     <p className="font-bold text-blue-950 px-2 text-center">Price: ${totalPrice}</p>
 
-                    <div className="relative w-24 h-12 mx-auto flex justify-center items-center rounded-full border border-stone-400">
+                    <div className="relative w-24 h-8 mx-auto flex justify-center items-center rounded-full border border-stone-400">
                         <h2 className="mx-auto text-sm font-semibold text-blue-950">{totalItem}</h2>
                         <Button 
-                            className="absolute w-10 h-10 -right-3 rounded-full flex justify-center items-center border-2 border-white bg-blue-900 active:bg-blue-950"
+                            className="absolute ring-0 w-10 h-10 -right-3 rounded-full flex justify-center items-center border-2 border-white bg-blue-900 active:bg-blue-950"
                             onClick={() => setTotalItem(prev => prev + 1)}
                         >
                             <Plus className="stroke-white"/>
                         </Button>
                         <Button 
-                            className="absolute w-10 h-10 -left-3 rounded-full flex justify-center items-center border-2 border-stone-300 bg-gray-100 active:bg-gray-200"
+                            className="absolute ring-0 w-10 h-10 -left-3 rounded-full flex justify-center items-center border-2 border-stone-300 bg-gray-100 active:bg-gray-200"
                             onClick={() => setTotalItem(prev => prev - 1)}
                         >
                             <Minus className="stroke-blue-950"/>
@@ -85,7 +100,7 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
 
                     <DialogFooter className="p-0">
                         <div className="flex w-full">
-                            <Button className="w-1/2 flex gap-1 bg-[tomato] text-white rounded-none">
+                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
                                 <ShoppingCart className="stroke-white size-6" strokeWidth={2}></ShoppingCart>
                             </Button>

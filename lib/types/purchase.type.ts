@@ -9,10 +9,8 @@ export type PurchasePageProps = {
 }
 
 export type PurchaseCategoryPageProps = {
-    params: {
-        category: string
-    }
-    searchParams: searchParams
+    params: Promise<{ category: string}>
+    searchParams: Promise<searchParams>
 }
 
 export type PurchaseContentProps = {

@@ -20,14 +20,17 @@ import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import axios from "axios"
 import Sidebar from "./sidebar"
 import { IProducts } from "@/lib/types/products.type"
-import { useRouter } from "next/navigation"
+import { useSelector } from "react-redux"
+import { RootState } from "@/lib/store"
+import ToastAddCart from "./toast-add-cart"
 
 const lobster = Lobster({ weight: "400", subsets: ["latin"] })
 
 const Navbar = () => {
     const [productsData, setProductsData] = useState<{ category: string, description: string }[]>([])
 
-    const router = useRouter()
+    const cart = useSelector((state: RootState) => state.cart)
+    const totalItemCart = cart.items.reduce((acc, item) => acc + item.quantity, 0)
 
     useEffect(() => {
         async function fetchData() {
@@ -50,15 +53,6 @@ const Navbar = () => {
         fetchData()
     }, [])
 
-    function handleRedirect(e: React.MouseEvent) {
-        e.preventDefault()
-
-        const target = e.currentTarget
-        const category = target.children?.[0].innerHTML
-
-        router.push(`/purchase/${category}`)
-    }
-    
     return (
         <div className="w-full">
             <div className="w-full md:max-w-6xl flex gap-4 mx-auto">
@@ -98,12 +92,13 @@ const Navbar = () => {
                                     {productsData.map((product, index) => (
                                         <li 
                                             key={index} 
-                                            className=" hover:bg-stone-100 cursor-pointer max-w-42 p-1 rounded-sm"
-                                            onClick={handleRedirect}
+                                            className="hover:bg-stone-100 cursor-pointer max-w-42 p-1 rounded-sm"
                                         >
-                                            <h2 className="font-semibold text-sm">{product.category}</h2>
-                                            <Separator className="bg-stone-400 h-1 my-2"/>
-                                            <p className="text-xs line-clamp-2 text-stone-600">{product.description}</p>
+                                            <Link href={`/purchase/${product.category}`}>
+                                                <h2 className="font-semibold text-sm">{product.category}</h2>
+                                                <Separator className="bg-stone-400 h-1 my-2"/>
+                                                <p className="text-xs line-clamp-2 text-stone-600">{product.description}</p>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -127,10 +122,12 @@ const Navbar = () => {
                             <p className=" text-xs text-white font-bold">+1</p>
                         </div>
                     </div>
-                    <div className="bg-amber-600 rounded-full p-2 relative">
+                    <div className="relative bg-amber-600 rounded-full p-2">
+                        <ToastAddCart></ToastAddCart>
+
                         <ShoppingCart className="text-white"></ShoppingCart>
                         <div className="absolute -top-1 -right-1 rounded-full p-2 w-5 h-5 flex justify-center items-center bg-red-500">
-                            <p className="text-xs text-white font-bold">+1</p>
+                            <p className="text-xs text-white font-bold">{totalItemCart}</p>
                         </div>
                     </div>
                 </div>
