@@ -29,7 +29,9 @@ const ToastAddCart = () => {
                 )}
             </div>
 
-            <h2 className="text-amber-500 md:text-amber-400 font-bold text-xs">Add to cart +{lastAddedItem?.quantity}</h2>
+            {lastAddedItem?.quantity && (
+                <h2 className="text-amber-500 md:text-amber-400 font-bold text-xs">Add to cart +{lastAddedItem?.quantity}</h2>
+            )}
         </div>
     )
 }
