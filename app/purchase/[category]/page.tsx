@@ -1,4 +1,3 @@
-import Navbar from "@/components/common/navbar"
 import PurchaseContent from "@/components/purchase/purchase-content"
 import { PurchaseCategoryPageProps } from "@/lib/types/purchase.type"
 import { Metadata } from "next"
@@ -19,9 +18,6 @@ const PurchaseCategoryPage = async ({ params, searchParams }: PurchaseCategoryPa
 
   return (
     <>
-      <div className="w-full">
-        <Navbar />
-      </div>
       <PurchaseContent categoryParam={category} searchParams={search} />
     </>
   )
