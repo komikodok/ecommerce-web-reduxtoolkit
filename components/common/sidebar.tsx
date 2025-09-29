@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/accordion"
 
 import { 
-    ShoppingCart, 
     Heart, 
     X, 
     CircleQuestionMark, 
@@ -22,6 +21,7 @@ import Link from "next/link"
 import axios from "axios"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import ToastAddCart from "./toast-add-cart"
+import CartModal from "./cart-modal"
 
 
 const Sidebar = () => {
@@ -74,10 +74,7 @@ const Sidebar = () => {
                             <Heart className="size-4"/>
                             Wishlist
                         </p>
-                        <p className="flex gap-2 items-center text-sm rounded-md p-2">
-                            <ShoppingCart className="size-4"/>
-                            Cart
-                        </p>
+                        <CartModal></CartModal>
                     </div>
                 </header>
 

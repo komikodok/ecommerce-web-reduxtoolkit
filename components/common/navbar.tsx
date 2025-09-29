@@ -13,24 +13,19 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
-import { ShoppingCart, Heart } from "lucide-react"
+import { Heart } from "lucide-react"
 import { Lobster } from "next/font/google"
 import { useEffect, useState } from "react"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import axios from "axios"
 import Sidebar from "./sidebar"
 import { IProducts } from "@/lib/types/products.type"
-import { useSelector } from "react-redux"
-import { RootState } from "@/lib/store"
-import ToastAddCart from "./toast-add-cart"
+import CartModal from "./cart-modal"
 
 const lobster = Lobster({ weight: "400", subsets: ["latin"] })
 
 const Navbar = () => {
     const [productsData, setProductsData] = useState<{ category: string, description: string }[]>([])
-
-    const cart = useSelector((state: RootState) => state.cart)
-    const totalItemCart = cart.items.reduce((acc, item) => acc + item.quantity, 0)
 
     useEffect(() => {
         async function fetchData() {
@@ -122,17 +117,10 @@ const Navbar = () => {
                             <p className=" text-xs text-white font-bold">+1</p>
                         </div>
                     </div>
-                    <div className="relative bg-amber-600 rounded-full p-2">
-                        <ToastAddCart></ToastAddCart>
-
-                        <ShoppingCart className="text-white"></ShoppingCart>
-                        <div className="absolute -top-1 -right-1 rounded-full p-2 w-5 h-5 flex justify-center items-center bg-red-500">
-                            <p className="text-xs text-white font-bold">{totalItemCart}</p>
-                        </div>
-                    </div>
+                    <CartModal></CartModal>
                 </div>
                 
-                <Sidebar />
+                <Sidebar/>
             </div>
         </div>
     )

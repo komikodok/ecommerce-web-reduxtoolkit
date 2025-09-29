@@ -14,7 +14,7 @@ const WishlistButton = () => {
     return (
         <div 
             onClick={() => setIsWishlist(!isWishlist)}
-            className="absolute top-0 right-0 flex justify-center items-center"
+            className="m-auto flex justify-center items-center"
         >
             <Heart ref={wishlistRef} className="cursor-pointer stroke-blue-500 size-5 md:size-7"></Heart>
         </div>

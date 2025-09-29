@@ -32,7 +32,9 @@ const ProductCardMedium = ({ product }: ProductCardProps) => {
         />
       </div>
       
-      <WishlistButton />
+      <div className="absolute top-2 right-2">
+        <WishlistButton />
+      </div>
 
       <div className="flex flex-col px-2 mt-2">
           <h3 className="font-medium text-[10px] md:text-xs text-stone-600">{product.category}</h3>

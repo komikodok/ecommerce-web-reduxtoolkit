@@ -78,7 +78,7 @@ const ProductItemDrawer = ({ product }: { product: IProducts }) => {
 
                     <p className="font-bold text-blue-950 px-2 text-center">Price: ${totalPrice}</p>
 
-                    <div className="relative w-24 h-12 mx-auto flex justify-center items-center rounded-full border border-stone-400">
+                    <div className="relative w-24 h-8 mx-auto flex justify-center items-center rounded-full border border-stone-400">
                         <h2 className="mx-auto text-sm font-semibold text-blue-950">{totalItem}</h2>
                         <Button 
                             className="absolute w-10 h-10 -right-3 rounded-full flex justify-center items-center border-2 border-white bg-blue-900 active:bg-blue-950"
@@ -96,11 +96,11 @@ const ProductItemDrawer = ({ product }: { product: IProducts }) => {
 
                     <DrawerFooter className="p-0">
                         <div className="flex w-full">
-                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] text-white rounded-none">
+                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] active:bg-[#fd4221] text-white rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
                                 <ShoppingCart className="stroke-white size-6" strokeWidth={2}></ShoppingCart>
                             </Button>
-                            <Button className="w-1/2 bg-blue-900 text-white rounded-none">Checkout</Button>
+                            <Button className="w-1/2 bg-blue-900 active:bg-blue-950 text-white rounded-none">Checkout</Button>
                         </div>
                     </DrawerFooter>
                 </DrawerContent>

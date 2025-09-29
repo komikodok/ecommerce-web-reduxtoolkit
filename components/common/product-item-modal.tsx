@@ -57,7 +57,7 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
                     </div>
                 </DialogTrigger>
 
-                <DialogContent className="bg-slate-50 max-w-xs overflow-hidden border-none p-0">
+                <DialogContent showCloseButton={false} className="bg-slate-50 max-w-xs overflow-hidden border-none p-0">
                     <DialogTitle className="mx-auto text-lg text-center p-6">
                         {product.title}
                     </DialogTitle>
@@ -100,11 +100,11 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
 
                     <DialogFooter className="p-0">
                         <div className="flex w-full">
-                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] rounded-none">
+                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] active:bg-[#fd4221] rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
                                 <ShoppingCart className="stroke-white size-6" strokeWidth={2}></ShoppingCart>
                             </Button>
-                            <Button className="w-1/2 bg-blue-900 text-white rounded-none">Checkout</Button>
+                            <Button className="w-1/2 bg-blue-900 active:bg-blue-950 text-white rounded-none">Checkout</Button>
                         </div>
                     </DialogFooter>
                 </DialogContent>
