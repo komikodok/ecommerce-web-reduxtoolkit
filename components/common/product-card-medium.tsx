@@ -33,7 +33,7 @@ const ProductCardMedium = ({ product }: ProductCardProps) => {
       </div>
       
       <div className="absolute top-2 right-2">
-        <WishlistButton />
+        <WishlistButton product={product}/>
       </div>
 
       <div className="flex flex-col px-2 mt-2">

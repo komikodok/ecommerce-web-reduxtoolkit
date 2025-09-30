@@ -21,6 +21,7 @@ import axios from "axios"
 import Sidebar from "./sidebar"
 import { IProducts } from "@/lib/types/products.type"
 import CartModal from "./cart-modal"
+import WishlistModal from "./wishlist-modal"
 
 const lobster = Lobster({ weight: "400", subsets: ["latin"] })
 
@@ -118,6 +119,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <CartModal></CartModal>
+                    <WishlistModal></WishlistModal>
                 </div>
                 
                 <Sidebar/>

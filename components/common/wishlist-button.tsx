@@ -1,10 +1,14 @@
 "use client"
 
 import { Heart } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { wishlistButtonAnimate } from "@/lib/animation/whistlist.animate"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { useDispatch, useSelector } from "react-redux"
+import { addToWishlist, removeToWishlist } from "@/lib/slices/wishlist-slice"
+import { IProducts } from "@/lib/types/products.type"
+import { RootState } from "@/lib/store"
 
 const svgVariants = cva(
     "cursor-pointer stroke-blue-500",
@@ -23,19 +27,38 @@ const svgVariants = cva(
 )
 
 const WishlistButton = ({
+    product,
     size
 }: {
-   size?: VariantProps<typeof svgVariants>["size"]
+    product: IProducts
+    size?: VariantProps<typeof svgVariants>["size"]
 }) => {
-    const [isWishlist, setIsWishlist] = useState<boolean>(false)
     const wishlistRef = useRef<SVGSVGElement | null>(null)
 
-    useEffect(() => {
-        wishlistButtonAnimate(isWishlist, wishlistRef)
-    }, [isWishlist])
+    const isWishlist = useSelector((state: RootState) => (
+        state.wishlist.some(item => item.productId === product.id)
+    ))
+    const dispatch = useDispatch()
+
+    function handleWishlist() {
+        wishlistButtonAnimate(!isWishlist, wishlistRef)
+
+        if (isWishlist) {
+            dispatch(removeToWishlist(product.id))
+        } else {
+            dispatch(addToWishlist({
+                productId: product.id,
+                title: product.title,
+                image: product.image,
+                description: product.description,
+                category: product.category
+            }))
+        }
+    }
+
     return (
         <div 
-            onClick={() => setIsWishlist(!isWishlist)}
+            onClick={() => handleWishlist()}
             className="m-auto flex justify-center items-center"
         >
             <Heart ref={wishlistRef} className={cn(svgVariants({ size }))}></Heart>

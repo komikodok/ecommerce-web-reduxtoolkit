@@ -17,7 +17,7 @@ import { addOneFromCart, removeOneFromCart } from "@/lib/slices/cart-slice"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from "next/image"
-import WishlistButton from "./wishlist-button"
+// import WishlistButton from "./wishlist-button"
 import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 
@@ -120,10 +120,10 @@ const CartModal = () => {
                                             </div>
 
                                             <div className="flex gap-2 items-center justify-between">
-                                                <div className="flex gap-2 items-center justify-center">
+                                                {/* <div className="flex gap-2 items-center justify-center">
                                                     <p className="text-[10px] md:text-xs text-blue-900 font-semibold">Add favorit</p>
-                                                    <WishlistButton size="sm"></WishlistButton>
-                                                </div>
+                                                    <WishlistButton product={item} size="sm"/>
+                                                </div> */}
                                                 <div className="w-12 h-5 flex">
                                                     <div 
                                                         className="cursor-pointer w-4 flex justify-center items-center"

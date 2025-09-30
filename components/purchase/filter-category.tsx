@@ -3,42 +3,32 @@
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { FilterCategoryProps } from "@/lib/types/purchase.type"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { Funnel } from "lucide-react"
 
 
 const FilterCategory = ({ categories }: FilterCategoryProps) => {
     const router = useRouter()
-    
     const params = useParams()
-    const currentCategory = params.category ? decodeURIComponent(params.category as string) : ""
-    
     const searchParams = useSearchParams()
+    
+    const currentCategory = params.category ? decodeURIComponent(params.category as string) : ""
+    const isDescending = searchParams.get("sort") === "desc"
+    
     const queryParams = useMemo(() => {
         return new URLSearchParams(searchParams)
     }, [searchParams])
 
-    const [isDescending, setIsDescending] = useState<boolean>(searchParams.get("sort") ? true : false)
+    function handleSort() {
+        const category = currentCategory ? `/${currentCategory}` : ""
+        const sort = isDescending ? "" : "?sort=desc"
 
-    useEffect(() => {
-        let url = "/purchase"
+        router.push(`/purchase${category}${sort}`)
 
-        if (currentCategory) {
-            url += `/${currentCategory}`
-        }
+    }
 
-        if (isDescending) {
-            url += `?sort=desc`
-        }
+    function handleFilterCategory(category: string) {
 
-        router.push(url)
-    }, [isDescending, currentCategory, router, queryParams])
-
-    function handleFilterCategory(e: React.MouseEvent<HTMLLIElement>) {
-        e.preventDefault() 
-
-        const category = e.currentTarget.innerText
-        
         if (category === "All") {
             router.push(`/purchase${queryParams.toString() ? `?${queryParams.toString()}` : ""}`)
         } else {
@@ -50,7 +40,7 @@ const FilterCategory = ({ categories }: FilterCategoryProps) => {
         <>
             <Button 
                 className="bg-blue-950 text-white cursor-pointer"
-                onClick={() => setIsDescending(!isDescending)}
+                onClick={handleSort}
             >
                 <h2>Sorted</h2>
                 <Funnel fill={searchParams.get("sort") ? "white" : "none"}/>
@@ -63,20 +53,20 @@ const FilterCategory = ({ categories }: FilterCategoryProps) => {
                         rounded-md w-20 p-2 text-center cursor-pointer
                         ${!currentCategory ? "bg-blue-900 text-white" : "bg-slate-100"}
                     `}
-                    onClick={handleFilterCategory}
+                    onClick={() => handleFilterCategory("All")}
                 >
                     All
                 </li>
-                {(categories ?? []).map((category, index) => (
+                {(categories ?? []).map((cat, index) => (
                     <li 
                     key={index}
                     className={`
                         rounded-md w-20 p-2 text-center cursor-pointer bg-blue-900
-                        ${currentCategory === category ? "bg-blue-900 text-white" : "bg-slate-100"}
+                        ${currentCategory === cat ? "bg-blue-900 text-white" : "bg-slate-100"}
                         `}
-                        onClick={handleFilterCategory}
+                        onClick={() => handleFilterCategory(cat)}
                         >
-                        {category}
+                        {cat}
                     </li>
                 ))}
             </ul>

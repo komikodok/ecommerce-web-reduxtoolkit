@@ -48,7 +48,7 @@ const ProductCardRegular = ({ product }: ProductCardProps) => {
                 </div>
             
                 <div className="absolute top-0 right-0">
-                    <WishlistButton />
+                    <WishlistButton product={product}/>
                 </div>
             </div>
 
