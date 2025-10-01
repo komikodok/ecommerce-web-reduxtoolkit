@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { FilterCategoryProps } from "@/lib/types/purchase.type"
 import { useMemo } from "react"
 import { Funnel } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 
 const FilterCategory = ({ categories }: FilterCategoryProps) => {
@@ -37,16 +38,8 @@ const FilterCategory = ({ categories }: FilterCategoryProps) => {
     }
 
     return (
-        <>
-            <Button 
-                className="bg-blue-950 text-white cursor-pointer"
-                onClick={handleSort}
-            >
-                <h2>Sorted</h2>
-                <Funnel fill={searchParams.get("sort") ? "white" : "none"}/>
-            </Button>
-            
-            <ul className="w-fit mx-auto grid grid-cols-3 md:grid-cols-5 gap-3 text-xs justify-center items-center">
+        <>  
+            <ul className="w-fit mx-auto grid grid-cols-3 md:grid-cols-6 gap-3 text-xs justify-center items-center">
                 <li 
                     key={-1}
                     className={`
@@ -69,6 +62,15 @@ const FilterCategory = ({ categories }: FilterCategoryProps) => {
                         {cat}
                     </li>
                 ))}
+                <Button 
+                    className="cursor-pointer"
+                    onClick={handleSort}
+                >
+                    <Funnel className={cn(
+                        "stroke-blue-800",
+                        searchParams.get("sort") && "fill-blue-800"
+                    )}/>
+                </Button>
             </ul>
         </>
     )

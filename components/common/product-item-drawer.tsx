@@ -44,7 +44,7 @@ const ProductItemDrawer = ({ product }: { product: IProducts }) => {
         <div className="md:hidden">
             <Drawer>
                 <DrawerTrigger asChild>
-                    <div className="relative mt-2 group cursor-pointer flex justify-center items-center mx-auto w-[90%] h-6 md:h-8 border border-stone-400 rounded-full">
+                    <div className="relative overflow-hidden mt-2 group cursor-pointer flex justify-center items-center mx-auto w-[90%] h-6 md:h-8 border border-stone-400 rounded-full">
                         <div className="overlay absolute z-0 left-0 w-0 h-full group-hover:w-full group-active:w-full bg-blue-900 rounded-full transition-all md:duration-300"></div>
                         <h2 className="text-blue-950 group-hover:text-white group-active:text-white text-xs sm:text-sm font-bold z-20 transition-all md:duration-300">
                             ${product.price}

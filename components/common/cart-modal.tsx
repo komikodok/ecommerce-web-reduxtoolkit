@@ -51,18 +51,23 @@ const CartModal = () => {
                     </div>
 
                     <div className="relative md:hidden flex gap-2 items-center text-sm rounded-md p-2">
-                        <p className="absolute -top-2 right-0 text-red-500">+{ totalItemCart}</p>
+                        <div className="absolute -top-2 right-0">
+                            <p className="text-red-500">+{totalItemCart}</p>
+                        </div>
                         <BaggageClaim className="size-4"/>
                         <p>Cart</p>
                     </div>
                 </div>
             </DialogTrigger>
 
-            <DialogContent showCloseButton={false} className="max-w-sm bg-slate-50 overflow-hidden border-none">
+            <DialogContent showCloseButton={false} className="outline-none max-w-sm bg-slate-50 overflow-hidden border-none">
                 <DialogHeader>
                     <DialogTitle className="text-start flex justify-between text-md md:text-lg">
-                        <ShoppingCart />
-                        {totalItemCart > 1 && (
+                        <div className="flex gap-2 items-center">
+                            <ShoppingCart className="stroke-blue-600 size-7" />
+                            <h2 className="text-blue-900">Cart</h2>
+                        </div>
+                        {totalItemCart > 0 && (
                             <Button 
                                 size="sm"
                                 className="cursor-pointer text-white text-xs md:text-sm flex justify-center items-center rounded-sm bg-blue-900 active:bg-blue-950"
@@ -72,8 +77,8 @@ const CartModal = () => {
                         )}
                     </DialogTitle>
                     <h2 className={`
-                            text-xs text-blue-400
-                            ${totalItemCart > 1 ? "text-start" : "text-end"}
+                            text-xs text-blue-600
+                            ${totalItemCart > 0 ? "text-start" : "text-end"}
                         `}
                     >
                         Total item: {totalItemCart}
@@ -109,7 +114,7 @@ const CartModal = () => {
                                                 src={item.image}
                                                 fill
                                                 className="object-contain"
-                                                sizes="(max-width: 768px) 88pxpx, 128px"
+                                                sizes="(max-width: 768px) 88px, 128px"
                                             />
                                         </div>
                                         <div className=" w-full h-full flex flex-col space-y-2 md:space-y-3 px-1">

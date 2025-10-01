@@ -46,7 +46,7 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
         <div className="hidden md:block">
             <Dialog>
                 <DialogTrigger asChild>
-                    <div className="relative mt-2 group cursor-pointer flex justify-center items-center mx-auto w-[90%] h-6 md:h-8 border border-stone-400 rounded-full">
+                    <div className="relative overflow-hidden mt-2 group cursor-pointer flex justify-center items-center mx-auto w-[90%] h-6 md:h-8 border border-stone-400 rounded-full">
                         <div className="overlay absolute z-0 left-0 w-0 h-full group-hover:w-full group-active:w-full bg-blue-900 rounded-full transition-all md:duration-300"></div>
                         <h2 className="text-blue-950 group-hover:text-white group-active:text-white text-xs sm:text-sm font-bold z-20 transition-all md:duration-300">
                             ${product.price}
@@ -100,11 +100,11 @@ const ProductItemModal = ({ product }: { product: IProducts }) => {
 
                     <DialogFooter className="p-0">
                         <div className="flex w-full">
-                            <Button onClick={handleAddToCart} className="w-1/2 flex gap-1 bg-[tomato] active:bg-[#fd4221] rounded-none">
+                            <Button onClick={handleAddToCart} className="cursor-pointer w-1/2 flex gap-1 bg-[tomato] active:bg-[#fd4221] rounded-none">
                                 <Plus className="stroke-white" strokeWidth={2}></Plus>
                                 <ShoppingCart className="stroke-white size-6" strokeWidth={2}></ShoppingCart>
                             </Button>
-                            <Button className="w-1/2 bg-blue-900 active:bg-blue-950 text-white rounded-none">Checkout</Button>
+                            <Button className="cursor-pointer w-1/2 bg-blue-900 active:bg-blue-950 text-white rounded-none">Checkout</Button>
                         </div>
                     </DialogFooter>
                 </DialogContent>

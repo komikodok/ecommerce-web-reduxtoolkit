@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
-import { Heart } from "lucide-react"
 import { Lobster } from "next/font/google"
 import { useEffect, useState } from "react"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
@@ -112,14 +111,8 @@ const Navbar = () => {
                 </NavigationMenu>
 
                 <div className="hidden md:flex my-2 ml-auto mr-10 gap-5 justify-center items-center">
-                    <div className="relative">
-                        <Heart className="size-8" strokeWidth={0} fill="#d97706" />
-                        <div className="absolute -top-1 -right-1 rounded-full p-2 w-3 h-3 flex justify-center items-center bg-red-500">
-                            <p className=" text-xs text-white font-bold">+1</p>
-                        </div>
-                    </div>
-                    <CartModal></CartModal>
                     <WishlistModal></WishlistModal>
+                    <CartModal></CartModal>
                 </div>
                 
                 <Sidebar/>

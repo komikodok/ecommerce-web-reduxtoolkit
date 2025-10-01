@@ -1,7 +1,7 @@
 "use client"
 
 import { Heart } from "lucide-react"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { wishlistButtonAnimate } from "@/lib/animation/whistlist.animate"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
@@ -40,9 +40,11 @@ const WishlistButton = ({
     ))
     const dispatch = useDispatch()
 
-    function handleWishlist() {
-        wishlistButtonAnimate(!isWishlist, wishlistRef)
+    useEffect(() => {
+        wishlistButtonAnimate(isWishlist, wishlistRef)
+    }, [isWishlist])
 
+    function handleWishlist() {
         if (isWishlist) {
             dispatch(removeToWishlist(product.id))
         } else {

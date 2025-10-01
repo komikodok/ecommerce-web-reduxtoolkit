@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/accordion"
 
 import { 
-    Heart, 
     X, 
     CircleQuestionMark, 
     HandCoins ,
@@ -22,6 +21,7 @@ import axios from "axios"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import ToastAddCart from "./toast-add-cart"
 import CartModal from "./cart-modal"
+import WishlistModal from "./wishlist-modal"
 
 
 const Sidebar = () => {
@@ -70,10 +70,7 @@ const Sidebar = () => {
                         <X className="size-5" strokeWidth={2}/>
                     </Button>
                     <div className="flex justify-center items-center space-x-6">
-                        <p className="flex gap-2 items-center text-sm rounded-md p-2">
-                            <Heart className="size-4"/>
-                            Wishlist
-                        </p>
+                        <WishlistModal></WishlistModal>
                         <CartModal></CartModal>
                     </div>
                 </header>
@@ -82,7 +79,7 @@ const Sidebar = () => {
                     <div className="space-y-2">
                         <h2 className="text-sm text-stone-400">@menu</h2>
                         <div className="space-y-3">
-                            <Link href="#why" className="flex gap-2 px-3 py-2 items-center text-sm">
+                            <Link href="/#why" className="flex gap-2 px-3 py-2 items-center text-sm">
                                 <CircleQuestionMark className="size-4"/>
                                 Why &phi;Shop
                             </Link>

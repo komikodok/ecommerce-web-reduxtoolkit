@@ -41,7 +41,7 @@ const cartSlice = createSlice({
                     item.quantity -= 1
                     break
                 case false:
-                    state.items.filter(item => item.productId !== action.payload)
+                    state.items = state.items.filter(item => item.productId !== action.payload)
                     break
             }
         },
