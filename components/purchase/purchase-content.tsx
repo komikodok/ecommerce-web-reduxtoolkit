@@ -17,7 +17,6 @@ const PurchaseContent = ({ searchParams, categoryParam }: PurchaseContentProps) 
       try {
         const queryParams = new URLSearchParams(searchParams as Record<string, string>)
 
-        // Fetch products
         let productsResponse
         if (categoryParam) {
           productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/category/${categoryParam}?${queryParams.toString()}`)
@@ -32,7 +31,6 @@ const PurchaseContent = ({ searchParams, categoryParam }: PurchaseContentProps) 
           console.error('Failed to fetch products:', productsResponse.statusText)
         }
 
-        // Fetch categories
         const categoriesResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/categories`)
         if (categoriesResponse.ok) {
           const categories = await categoriesResponse.json()
