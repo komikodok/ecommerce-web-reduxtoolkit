@@ -17,7 +17,7 @@ const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentP
             }
         })
 
-        productsData = await responseWithCategory.json() ?? []
+        productsData = responseWithCategory.ok ?await responseWithCategory.json() : []
     } else {
         const productsresponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?${queryParams.toString()}`, {
             method: 'GET',
@@ -26,7 +26,7 @@ const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentP
             }
         })
 
-        productsData = await productsresponse.json() ?? []
+        productsData = productsresponse.ok ? await productsresponse.json() : []
     }
 
         const categoriesProductResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/categories`, {
@@ -35,7 +35,7 @@ const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentP
                 revalidate: 60
             }
         })
-    const categoriesData = await categoriesProductResponse.json() ?? []
+    const categoriesData = categoriesProductResponse.ok ? await categoriesProductResponse.json() : []
         
     return (
         <div className='max-w-6xl mx-auto space-y-3 my-20'>          
