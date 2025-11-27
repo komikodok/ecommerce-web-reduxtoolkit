@@ -1,67 +1,64 @@
+'use client'
+
+import { useEffect, useState } from "react"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import { IProducts } from "@/lib/types/products.type"
 import FilterCategory from "@/components/purchase/filter-category"
 import { PurchaseContentProps } from "@/lib/types/purchase.type"
 import PurchaseListProduct from "./purchase-list-product"
-import { logger } from "@/lib/logger"
 
-export const dynamic = 'force-dynamic'
+const PurchaseContent = ({ searchParams, categoryParam }: PurchaseContentProps) => {
+  const [productsData, setProductsData] = useState<IProducts[]>([])
+  const [categoriesData, setCategoriesData] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
 
-const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentProps) => {
-    let productsData: IProducts[] = []
-    let categoriesData = []
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const queryParams = new URLSearchParams(searchParams as Record<string, string>)
 
-    const queryParams = new URLSearchParams(searchParams as Record<string, string>)
-    
-    if (categoryParam) {
-        const responseWithCategory = await fetch(`${BASE_FAKESTORE_API_URL}/products/category/${categoryParam}?${queryParams.toString()}`, {
-            method: 'GET',
-            next: {
-                revalidate: 60
-            }
-        })
-        
-        if (responseWithCategory.ok) {
-            productsData = await responseWithCategory.json() ?? []
-        }else {
-            logger.error('Failed to fetch products:', responseWithCategory.statusText)
+        // Fetch products
+        let productsResponse
+        if (categoryParam) {
+          productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/category/${categoryParam}?${queryParams.toString()}`)
+        } else {
+          productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?${queryParams.toString()}`)
         }
 
-    } else {
-        const productsresponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?${queryParams.toString()}`, {
-            method: 'GET',
-            next: {
-                revalidate: 60
-            }
-        })
-
-        if (productsresponse.ok) {
-            productsData = await productsresponse.json() ?? []
-        }else {
-            logger.error('Failed to fetch products:', productsresponse.statusText)
+        if (productsResponse.ok) {
+          const products: IProducts[] = await productsResponse.json()
+          setProductsData(products)
+        } else {
+          console.error('Failed to fetch products:', productsResponse.statusText)
         }
+
+        // Fetch categories
+        const categoriesResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/categories`)
+        if (categoriesResponse.ok) {
+          const categories = await categoriesResponse.json()
+          setCategoriesData(categories)
+        } else {
+          console.error('Failed to fetch categories:', categoriesResponse.statusText)
+        }
+
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    const categoriesProductResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products/categories`, {
-        method: 'GET',
-        next: {
-            revalidate: 60
-        }
-    })
+    fetchData()
+  }, [searchParams, categoryParam])
 
-    if (categoriesProductResponse.ok) {
-        categoriesData = await categoriesProductResponse.json() 
-    } else {
-        logger.error('Failed to fetch categories:', categoriesProductResponse.statusText)
-    }
-        
-    return (
-        <div className='max-w-6xl mx-auto space-y-3 my-20'>          
-            <FilterCategory categories={categoriesData}></FilterCategory>
+  if (loading) return <p className="text-center">Loading...</p>
 
-            <PurchaseListProduct products={productsData}></PurchaseListProduct>
-        </div>
-    )
+  return (
+    <div className='max-w-6xl mx-auto space-y-3 my-20'>
+      <FilterCategory categories={categoriesData} />
+      <PurchaseListProduct products={productsData} />
+    </div>
+  )
 }
 
 export default PurchaseContent
