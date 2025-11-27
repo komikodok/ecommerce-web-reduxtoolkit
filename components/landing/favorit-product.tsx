@@ -11,7 +11,13 @@ const FavoritProduct = async () => {
     }
   })
 
-  const productsData: IProducts[] = await productsResponse.json() ?? []
+  let productsData: IProducts[] = []
+
+  if (productsResponse.ok) {
+    productsData = await productsResponse.json() ?? []
+  } else {
+    console.error('Failed to fetch products:', productsResponse.statusText)
+  }
       
   const filterFavorit = productsData.filter((product: IProducts) => product.rating.rate >= 4.5)
   const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate)

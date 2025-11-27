@@ -2,6 +2,7 @@ import { IProducts } from "@/lib/types/products.type"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
+import { logger } from "@/lib/logger"
 
 const BestSellerProduct = async () => {
   const productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?limit=4`, {
@@ -10,8 +11,13 @@ const BestSellerProduct = async () => {
       revalidate: 60
     }
   })
-
-  const productsData: IProducts[] = await productsResponse.json() ?? []
+  let productsData: IProducts[] = []
+  
+  if (productsResponse.ok) {
+    productsData = await productsResponse.json()
+  } else {
+    logger.error('Failed to fetch products:', productsResponse.statusText)
+  }
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
