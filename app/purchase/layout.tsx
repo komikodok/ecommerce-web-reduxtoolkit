@@ -1,10 +1,13 @@
+import Navbar from '@/components/common/navbar'
 
-const LayoutPurchase = ({ children }: { children: React.ReactNode   }) => {
-  return (
-    <>
-      {children}
-    </>
-  )
+const PurchaseLayout = ({children}: {children: React.ReactNode}) => {
+    return (
+        <div>
+            <Navbar></Navbar>
+
+            {children}
+        </div>
+    )
 }
 
-export default LayoutPurchase
+export default PurchaseLayout
