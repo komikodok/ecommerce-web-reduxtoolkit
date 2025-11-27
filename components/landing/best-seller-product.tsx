@@ -1,31 +1,29 @@
-'use client'
-import { useEffect, useState } from 'react'
-import { IProducts } from '@/lib/types/products.type'
-import ProductCardLarge from '@/components/common/product-card-large'
-import ProductCardRegular from '../common/product-card-regular'
-import { BASE_FAKESTORE_API_URL } from '@/lib/base-url'
+import { IProducts } from "@/lib/types/products.type"
+import ProductCardLarge from "@/components/common/product-card-large"
+import ProductCardRegular from "../common/product-card-regular"
+import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 
-const BestSellerProduct = () => {
-  const [products, setProducts] = useState<IProducts[]>([])
+const BestSellerProduct = async () => {
+  const productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?limit=4`, {
+    method: 'GET',
+    next: {
+      revalidate: 60
+    }
+  })
 
-  useEffect(() => {
-    fetch(`${BASE_FAKESTORE_API_URL}/products?limit=4`)
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => console.error('Failed to fetch products', err))
-  }, [])
+  const productsData: IProducts[] = await productsResponse.json() ?? []
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
       <h2 className="text-4xl text-center font-semibold tracking-[-0.1em]">Best Seller</h2>
       <ul className="w-full md:max-w-2xl mx-auto grid grid-cols-2 space-y-1 place-items-center">
-        {products.map((product, index) =>
-          index === 0 ? (
-            <ProductCardLarge key={index} product={product} />
+        { productsData.map((product, index) => {
+          return index <= 0 ? (
+            <ProductCardLarge key={index} product={product}/>
           ) : (
-            <ProductCardRegular key={index} product={product} />
+            <ProductCardRegular key={index} product={product}/>
           )
-        )}
+        })}
       </ul>
     </div>
   )
