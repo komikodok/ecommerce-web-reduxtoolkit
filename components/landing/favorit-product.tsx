@@ -11,7 +11,7 @@ const FavoritProduct = async () => {
     }
   })
 
-  const productsData: IProducts[] = productsResponse.ok ? await productsResponse.json() : []
+  const productsData: IProducts[] = await productsResponse.json() ?? []
       
   const filterFavorit = productsData.filter((product: IProducts) => product.rating.rate >= 4.5)
   const sortedFavorit = filterFavorit.sort((a, b) => b.rating.rate - a.rating.rate)

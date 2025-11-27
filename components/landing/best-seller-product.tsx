@@ -11,7 +11,7 @@ const BestSellerProduct = async () => {
     }
   })
 
-  const productsData: IProducts[] = productsResponse.ok ?await productsResponse.json() : []
+  const productsData: IProducts[] = await productsResponse.json() ?? []
 
   return (
     <div className="w-full max-w-lg md:max-w-6xl mx-auto space-y-8">
