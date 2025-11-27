@@ -2,9 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["fakestoreapi.com"],
-  },
-  reactStrictMode: false
+    domains: ["fakestoreapi.com"]
+  }
 };
 
 export default nextConfig;
