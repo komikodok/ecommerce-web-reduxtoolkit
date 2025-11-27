@@ -5,6 +5,7 @@ import { PurchaseContentProps } from "@/lib/types/purchase.type"
 import PurchaseListProduct from "./purchase-list-product"
 import { logger } from "@/lib/logger"
 
+export const dynamic = 'force-dynamic'
 
 const PurchaseContent = async ({ searchParams, categoryParam }: PurchaseContentProps) => {
     let productsData: IProducts[] = []

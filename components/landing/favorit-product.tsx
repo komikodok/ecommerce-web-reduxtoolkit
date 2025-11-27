@@ -3,6 +3,8 @@ import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import ProductCardLarge from "@/components/common/product-card-large"
 import ProductCardRegular from "../common/product-card-regular"
 
+export const dynamic = 'force-dynamic'
+
 const FavoritProduct = async () => {
   const productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products`, {
     method: 'GET',

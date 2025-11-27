@@ -4,6 +4,8 @@ import ProductCardRegular from "../common/product-card-regular"
 import { BASE_FAKESTORE_API_URL } from "@/lib/base-url"
 import { logger } from "@/lib/logger"
 
+export const dynamic = 'force-dynamic'
+
 const BestSellerProduct = async () => {
   const productsResponse = await fetch(`${BASE_FAKESTORE_API_URL}/products?limit=4`, {
     method: 'GET',
